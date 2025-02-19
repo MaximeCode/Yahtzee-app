@@ -1,18 +1,20 @@
 <?php
 
-define('MYSQL_HOST', getenv('DB_HOST'));
-define('MYSQL_PORT', getenv('DB_PORT'));
-define('MYSQL_NAME', getenv('DB_NAME'));
-define('MYSQL_USER', getenv('DB_USER'));
-define('MYSQL_PASSWORD', getenv('DB_PASSWORD'));
+$config = require __DIR__ . '/_config.php';
 
 try {
   $mysqlClient = new PDO(
-    sprintf('mysql:host=%s;dbname=%s;port=%s;charset=utf8', MYSQL_HOST, MYSQL_NAME, MYSQL_PORT),
-    MYSQL_USER,
-    MYSQL_PASSWORD
+    sprintf(
+      'mysql:host=%s;dbname=%s;port=%s;charset=utf8',
+      $config['DB_HOST'],
+      $config['DB_NAME'],
+      $config['DB_PORT']
+    ),
+    $config['DB_USER'],
+    $config['DB_PASSWORD']
   );
   $mysqlClient->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  echo 'Connexion réussie';
 } catch (Exception $exception) {
   die('Erreur : ' . $exception->getMessage());
 }
