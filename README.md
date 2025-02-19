@@ -15,7 +15,7 @@ YAHTZEE-APP
 │   ├── get_scores.php
 │   └── mysql.php
 ├── database/
-│   ├── Yahtzee.sql
+│   ├── yahtzee.sql
 ├── frontend/
 │   ├── public/
 │   └── src/
@@ -82,7 +82,9 @@ CREATE DATABASE Yahtzee;
 - Importez le fichier de dump :
 
 ```bash
-mysql -u votre_utilisateur -p Yahtzee < database/yahtzee.sql
+scp database/yahtzee.sql votre_user@votre_host:/home
+cd home
+mysql -u votre_utilisateur -p Yahtzee < yahtzee.sql
 ```
 
 4. Configuration de l'environnement
