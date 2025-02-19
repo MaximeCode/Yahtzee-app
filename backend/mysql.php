@@ -14,7 +14,7 @@ try {
     $config['DB_PASSWORD']
   );
   $mysqlClient->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  echo 'Connexion réussie';
+  // echo 'Connexion réussie';
 } catch (Exception $exception) {
   die('Erreur : ' . $exception->getMessage());
 }

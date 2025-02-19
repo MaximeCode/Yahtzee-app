@@ -159,7 +159,7 @@ export function Game() {
   const [scoreAdded, setScoreAdded] = useState(false);
   const addScore = async () => {
     try {
-      const response = await fetch("http://localhost/yahtzee-app/backend/add_scores.php", {
+      const response = await fetch("http://localhost:8000/add_scores.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
