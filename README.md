@@ -59,65 +59,51 @@ $highlight-color: #4caf50;
 
 1. Clonez le repository
 
-```bash
-git clone https://github.com/MaximeCode/Yahtzee_game.git
-```
+    ```bash
+    git clone https://github.com/MaximeCode/Yahtzee_game.git
+    ```
 
 2. Installez les dépendances frontend
 
-```bash
-cd Yahtzee_game
-cd frontend
-npm install
-```
+    ```bash
+    cd Yahtzee_game
+    cd frontend
+    npm install
+    ```
 
 3. Configurez la base de données
 
-- Créez une base de données MySQL/MariaDB
+    - Créez une base de données MySQL/MariaDB
+      
+      ```sql
+      CREATE DATABASE Yahtzee;
+      ```
+    - Importez le fichier de dump :
 
-```sql
-CREATE DATABASE Yahtzee;
-```
-
-- Importez le fichier de dump :
-
-```bash
-scp database/yahtzee.sql votre_user@votre_host:/home
-cd home
-mysql -u votre_utilisateur -p Yahtzee < yahtzee.sql
-```
+      ```bash
+      scp database/yahtzee.sql votre_user@votre_host:/home
+      cd home
+      mysql -u votre_utilisateur -p Yahtzee < yahtzee.sql
+      ```
 
 4. Configuration de l'environnement
 
-- Copiez le fichier `.env.example` vers `.env`
-
-```bash
-cp .env.example .env
-```
-
-- Modifiez les variables dans `.env` avec vos informations :
-
-```env
-DB_HOST=votre_host
-DB_PORT=3306
-DB_NAME=Yahtzee
-DB_USER=votre_user
-DB_PASSWORD=votre_password
-```
+    - Renommer le fichier `.env.example` en `.env`
+    - Modifiez les variables dans `.env` avec vos informations :
 
 5. Lancez l'application en mode développement
 
-```bash
-npm start
-```
+    ```bash
+    npm start
+    ```
 
 6. Lancer le backend pour recevoir et envoyer les scores vers la base de données  
 <sub>*Si php n'est pas installé, utiliser un serveur web comme XAMPP ou Laragon mais il faudra déplacer les fichiers php et donc modifier les url dans le projet !)*[^1]</sub>
 
-```bash
-cd backend
-php -S localhost:8000
-```
+    ```bash
+    cd backend
+    php -S localhost:8000
+    ```
 
 ## 🎮 Fonctionnalités
 
