@@ -108,6 +108,14 @@ DB_PASSWORD=votre_password
 npm start
 ```
 
+6. Lancer le backend pour recevoir et envoyer les scores vers la base de données  
+<sub>*Si php n'est pas installé, utiliser un serveur web comme XAMPP ou Laragon mais il faudra déplacer les fichiers php et donc modifier les url dans le projet !)*[^1]</sub>
+
+```bash
+cd backend
+php -S localhost:8000
+```
+
 ## 🎮 Fonctionnalités
 
 - Interface utilisateur intuitive
@@ -169,3 +177,8 @@ Ce projet est actuellement en développement passif. Lorsque j'ai du temps, j'es
 - Mise en production de cette version sur `Vercel`
 - Mode multijoueur
 - Animations améliorées
+
+
+## Annexes
+
+[^1]: My reference.
