@@ -1,0 +1,217 @@
+$main-color: wheat;
+$bg-color: #4d4735;
+$btn-bg-color: black;
+$btn-hover-bg-color: #266041;
+$highlight-color: #4CAF50;
+$grey-opacity: 0.3;
+$cursor-disabled: not-allowed;
+
+*, ::after, ::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  color: $main-color;
+  background: $bg-color;
+  font-family: Georgia, serif;
+}
+
+.App {
+  text-align: center;
+  max-width: 90vw;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+i, a {
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+.modals {
+  font-family: Georgia, serif;
+}
+
+#btnPlay {
+  margin: 0.5em;
+}
+
+.btnToClick {
+  padding: 0 15px;
+  height: 2.3em;
+  background: $btn-bg-color;
+  border: none;
+  border-radius: 0.625em;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  color: $main-color;
+
+  &#replay {
+    background: rgba(0, 0, 255, 0.5);
+
+    &:after {
+      background: rgba(255, 0, 0, 0.5);
+    }
+  }
+
+  &#backToHome:after {
+    background: grey;
+  }
+
+  &#btnSeeScores {
+    background: #266041;
+
+    &:after {
+      background: rgba(255, 0, 0, 0.5);
+    }
+  }
+
+  &#saveScore {
+    background: rgb(172, 0, 0);
+
+    &:after {
+      background: rgba(236, 182, 0, 0.5);
+    }
+  }
+
+  &:hover {
+    color: white;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:after {
+    content: "";
+    background: $btn-hover-bg-color;
+    position: absolute;
+    z-index: -1;
+    left: -22%;
+    right: -22%;
+    top: -2%;
+    bottom: -2%;
+    transform: skewX(-45deg) scale(0, 1);
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:hover:after {
+    transform: skewX(-45deg) scale(1, 1);
+  }
+}
+
+#btnKeepDice {
+  font-size: 14px;
+}
+
+.die {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  min-width: 140px;
+}
+
+#diceRow {
+  row-gap: 20px;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+}
+
+.grey {
+  opacity: $grey-opacity;
+}
+
+.cursor-disabled {
+  cursor: $cursor-disabled;
+}
+
+/* style tableau score */
+.score-table {
+  border-collapse: collapse;
+  color: white;
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  th {
+    background-color: $highlight-color;
+    color: white;
+    text-align: center;
+  }
+}
+
+.section-header {
+  background-color: $highlight-color;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.score {
+  background-color: #5A5A5A;
+  color: white;
+  cursor: cell;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    background-color: $highlight-color;
+  }
+}
+
+.subtotal, .total-section {
+  font-weight: bold;
+  text-align: center;
+}
+
+.bonus {
+  font-weight: bold;
+  color: yellow;
+  text-align: center;
+}
+
+#textEndFirstGame {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.toHover:hover {
+  opacity: 0.7;
+}
+
+// Modal Save my score
+
+.modal-title {
+  font-size: 1.2em;
+}
+
+// Style page Scores
+
+.bandeau {
+  border: 2px solid #fff;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: 10% 25% 25% 40%;
+  justify-content: center;
+  align-items: center;
+  //height: 50px;
+  margin-bottom: 20px;
+  background-color: $btn-hover-bg-color;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}

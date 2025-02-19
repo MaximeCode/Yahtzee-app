@@ -1,0 +1,149 @@
+*, ::after, ::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  color: wheat;
+  background: #4d4735;
+  font-family: Georgia, serif;
+}
+
+.App {
+  text-align: center;
+  max-width: 90vw;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+#btnPlay {
+  margin: 0.5em;
+}
+
+.btnToClick {
+  padding: 0 15px;
+  height: 2.3em;
+  background: black;
+  border: none;
+  border-radius: 0.625em;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  color: wheat;
+}
+.btnToClick#replay {
+  background: rgba(0, 0, 255, 0.5);
+}
+.btnToClick#backToHome:after {
+  background: grey;
+}
+.btnToClick:hover {
+  color: white;
+  transition: all 0.5s ease-in-out;
+}
+.btnToClick:after {
+  content: "";
+  background: #266041;
+  position: absolute;
+  z-index: -1;
+  left: -22%;
+  right: -22%;
+  top: -2%;
+  bottom: -2%;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s ease-in-out;
+}
+.btnToClick:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+}
+
+#btnKeepDice {
+  font-size: 14px;
+}
+
+.die {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  min-width: 140px;
+}
+
+#diceRow {
+  row-gap: 20px;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+}
+
+.grey {
+  opacity: 0.3;
+}
+
+.cursor-disabled {
+  cursor: not-allowed;
+}
+
+/* style tableau score */
+.score-table {
+  border-collapse: collapse;
+  color: white;
+}
+.score-table th, .score-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.score-table th {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+}
+
+.section-header {
+  background-color: #4CAF50;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.score {
+  background-color: #5A5A5A;
+  color: white;
+  cursor: cell;
+  transition: all 0.1s ease-in-out;
+}
+.score:hover {
+  background-color: #4CAF50;
+}
+
+.subtotal, .total-section {
+  font-weight: bold;
+  text-align: center;
+}
+
+.bonus {
+  font-weight: bold;
+  color: yellow;
+  text-align: center;
+}
+
+#textEndFirstGame {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.toHover:hover {
+  opacity: 0.7;
+}
+
+/*# sourceMappingURL=App.css.map */
