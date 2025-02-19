@@ -66,6 +66,7 @@ git clone https://github.com/MaximeCode/Yahtzee_game.git
 2. Installez les dépendances frontend
 
 ```bash
+cd Yahtzee_game
 cd frontend
 npm install
 ```
