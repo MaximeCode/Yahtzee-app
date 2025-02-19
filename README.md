@@ -11,6 +11,7 @@ Le Yahtzee est un jeu de dés où les joueurs lancent 5 dés et tentent de réal
 ```
 YAHTZEE-APP
 ├── backend/
+│   ├── _config.php
 │   ├── add_scores.php
 │   ├── get_scores.php
 │   └── mysql.php
@@ -26,9 +27,65 @@ YAHTZEE-APP
 │       │   ├── Home.jsx
 │       │   └── Scores.jsx
 │       └── styles/
-├── .env
 └── ...
 ```
+
+## ⚙️ Installation
+
+1. Clonez le repository
+
+    ```bash
+    git clone https://github.com/MaximeCode/Yahtzee_game.git
+    ```
+
+2. Installez les dépendances frontend
+
+    ```bash
+    cd Yahtzee_game/frontend
+    npm install
+    ```
+
+3. Configurez la base de données
+
+    - Importez le fichier de dump :
+      ```bash
+      scp database/yahtzee.sql votre_user@votre_host:/home
+      ```
+
+    - Sur votre serveur, créez une base de données MySQL/MariaDB :
+      ```sql
+      CREATE DATABASE Yahtzee;
+      ```
+      
+    - Intégrer ce fichier dans la base de données précédemment créée :
+      ```bash
+      cd home
+      mysql -u votre_utilisateur -p Yahtzee < yahtzee.sql
+      ```
+
+5. Configuration de la connexion à la base de données
+
+    - Dans le dossier `backend`, Renommer le fichier `_config.ex.php` en `_config.php`
+    - Modifiez les variables dans `_config.php` avec vos informations.
+
+6. Lancez l'application en mode développement
+
+    ```bash
+    npm start
+    ```
+
+7. Lancer le backend pour recevoir et envoyer les scores vers la base de données  
+<sub>*Si php n'est pas installé, utiliser un serveur web comme XAMPP ou Laragon mais il faudra déplacer les fichiers php et donc modifier les url dans le projet !* [^1]</sub>
+
+    ```bash
+    cd ../backend
+    php -S localhost:8000
+    ```
+
+   ### Votre application est prête !
+   PS : Je vous mets au défi de battre un score de 350 pts !
+
+   *Bonne chance !* 😉
 
 ## 🚀 Technologies Utilisées
 
@@ -54,56 +111,6 @@ $highlight-color: #4caf50;
 ## 📜 Typographie
 
 - Police principale : Georgia, serif
-
-## ⚙️ Installation
-
-1. Clonez le repository
-
-    ```bash
-    git clone https://github.com/MaximeCode/Yahtzee_game.git
-    ```
-
-2. Installez les dépendances frontend
-
-    ```bash
-    cd Yahtzee_game
-    cd frontend
-    npm install
-    ```
-
-3. Configurez la base de données
-
-    - Créez une base de données MySQL/MariaDB
-      
-      ```sql
-      CREATE DATABASE Yahtzee;
-      ```
-    - Importez le fichier de dump :
-
-      ```bash
-      scp database/yahtzee.sql votre_user@votre_host:/home
-      cd home
-      mysql -u votre_utilisateur -p Yahtzee < yahtzee.sql
-      ```
-
-4. Configuration de l'environnement
-
-    - Renommer le fichier `.env.example` en `.env`
-    - Modifiez les variables dans `.env` avec vos informations :
-
-5. Lancez l'application en mode développement
-
-    ```bash
-    npm start
-    ```
-
-6. Lancer le backend pour recevoir et envoyer les scores vers la base de données  
-<sub>*Si php n'est pas installé, utiliser un serveur web comme XAMPP ou Laragon mais il faudra déplacer les fichiers php et donc modifier les url dans le projet !)*[^1]</sub>
-
-    ```bash
-    cd backend
-    php -S localhost:8000
-    ```
 
 ## 🎮 Fonctionnalités
 
@@ -170,4 +177,7 @@ Ce projet est actuellement en développement passif. Lorsque j'ai du temps, j'es
 
 ## Annexes
 
-[^1]: My reference.
+[^1]: 
+Pages à modifier en cas d'utilisation d'un serveur web comme XAMPP ou Laragon :
+- `frontend\src\Pages\Scores.jsx`
+- `frontend\src\Pages\Game.jsx`
