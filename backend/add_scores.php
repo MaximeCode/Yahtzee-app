@@ -21,7 +21,7 @@ $name = $input['name'];
 $score = $input['score'];
 
 if (isset($name) && isset($score)) {
-    $addScoresStmt = $mysqlClient->prepare("INSERT INTO Scores (name, score) VALUES (:name, :score)");
+    $addScoresStmt = $mysqlClient->prepare("INSERT INTO Scores (name, score, date) VALUES (:name, :score, NOW())");
     $addScoresStmt->execute([
         'name' => $name,
         'score' => $score
