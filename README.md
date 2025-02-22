@@ -4,7 +4,9 @@ Une reproduction du célèbre jeu de société Yahtzee développée avec React. 
 
 ## 🎲 Aperçu
 
-Le Yahtzee est un jeu de dés où les joueurs lancent 5 dés et tentent de réaliser différentes combinaisons pour marquer des points. Cette version numérique reproduit fidèlement les règles et l'expérience du jeu original.
+Le Yahtzee est un jeu de dés où les joueurs lancent 5 dés et tentent de réaliser différentes combinaisons pour marquer des points. Cette version numérique reproduit fidèlement les règles et l'expérience du jeu original.  
+
+Mon projet est disponible partout à l'adresse suivante, déployer par `Vercel` : https://yahtzee-app.vercel.app/
 
 ## 📁 Structure du Projet
 
