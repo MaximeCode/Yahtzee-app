@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import {format} from "date-fns";
 
 export function Scores() {
 
@@ -51,7 +52,7 @@ export function Scores() {
               <div>{index === 0 ? "🏆" : index + 1}</div>
               <div>{score["name"]}</div>
               <div>{score["score"]} pts</div>
-              <div>Score effectué le {score["date"]}</div>
+              <div>Score effectué le {format(score["date"], 'dd/MM/yyyy')}</div>
             </div>
           ))
         )
