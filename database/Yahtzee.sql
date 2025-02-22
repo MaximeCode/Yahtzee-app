@@ -26,7 +26,7 @@ CREATE TABLE `Scores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `score` int(11) NOT NULL,
-  `date` date DEFAULT current_timestamp(),
+  `date` TIMESTAMP DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,8 +37,7 @@ CREATE TABLE `Scores` (
 
 LOCK TABLES `Scores` WRITE;
 /*!40000 ALTER TABLE `Scores` DISABLE KEYS */;
-INSERT INTO `Scores` VALUES
-(1,'Max',175,'2025-02-19');
+INSERT INTO `Scores` (name, score, date) VALUES ('Max',175,'2025-02-19');
 /*!40000 ALTER TABLE `Scores` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
