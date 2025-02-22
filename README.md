@@ -35,13 +35,13 @@ YAHTZEE-APP
 1. Clonez le repository
 
     ```bash
-    git clone https://github.com/MaximeCode/Yahtzee_game.git
+    git clone https://github.com/MaximeCode/Yahtzee-app.git
     ```
 
 2. Installez les dépendances frontend
 
     ```bash
-    cd Yahtzee_game/frontend
+    cd Yahtzee-app/frontend
     npm install
     ```
 
