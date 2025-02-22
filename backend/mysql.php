@@ -1,11 +1,12 @@
 <?php
 
+define('SECURE_ACCESS', true);
 $config = require __DIR__ . '/_config.php';
 
 try {
   $mysqlClient = new PDO(
     sprintf(
-      'mysql:host=%s;dbname=%s;port=%s;charset=utf8',
+      'mysql:host=%s;dbname=%s;charset=utf8',
       $config['DB_HOST'],
       $config['DB_NAME'],
       $config['DB_PORT']

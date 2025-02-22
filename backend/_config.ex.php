@@ -1,5 +1,7 @@
 <?php
 
+defined('SECURE_ACCESS') or die('Accès direct au fichier non autorisé');
+
 return [
     'DB_HOST' => '',
     'DB_PORT' => '',

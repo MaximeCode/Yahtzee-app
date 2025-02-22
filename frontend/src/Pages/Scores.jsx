@@ -12,7 +12,7 @@ export function Scores() {
     async function fetchScores() {
       try {
         // Appel à l'API pour obtenir les scores
-        const response = await fetch("http://localhost:8000/get_scores.php");
+        const response = await fetch("https://yahtzee.app.albabadminton.fr/get_scores.php");
         // Convertir la réponse en format JSON
         const data = await response.json();
         // Mettre à jour l'état avec les données récupérées
