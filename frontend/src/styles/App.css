@@ -1,4 +1,7 @@
-*, ::after, ::before {
+@charset "UTF-8";
+*,
+::after,
+::before {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -26,7 +29,8 @@
   min-height: 100vh;
 }
 
-i, a {
+i,
+a {
   color: #fff;
 }
 
@@ -135,33 +139,35 @@ a {
   border-collapse: collapse;
   color: white;
 }
-.score-table th, .score-table td {
+.score-table th,
+.score-table td {
   border: 1px solid #ddd;
   padding: 8px;
 }
 .score-table th {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   text-align: center;
 }
 
 .section-header {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   font-size: 1.5em;
   font-weight: bold;
 }
 
 .score {
-  background-color: #5A5A5A;
+  background-color: #5a5a5a;
   color: white;
   cursor: cell;
   transition: all 0.1s ease-in-out;
 }
 .score:hover {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
-.subtotal, .total-section {
+.subtotal,
+.total-section {
   font-weight: bold;
   text-align: center;
 }
@@ -203,6 +209,87 @@ a {
 @media (max-width: 768px) {
   #theScoreDate {
     font-size: 0.8em;
+  }
+}
+/* Styles pour les dés 3D - À ajouter à App.css */
+/* Conteneur des contrôles de dés 3D */
+#dice3DControls {
+  row-gap: 15px;
+}
+
+#dice3DControls .col {
+  min-height: 100px;
+}
+
+/* Style du bouton de basculement 2D/3D */
+.btnToClick[style*="266041"] {
+  /* Bouton actif 3D */
+  box-shadow: 0 0 10px rgba(38, 96, 65, 0.5);
+}
+
+.btnToClick[style*="8B4513"] {
+  /* Bouton actif 2D */
+  box-shadow: 0 0 10px rgba(139, 69, 19, 0.5);
+}
+
+/* Animation pour le passage entre modes */
+.dice-mode-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Style pour les indicateurs de valeur des dés 3D */
+.dice-3d-indicator {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  padding: 5px 10px;
+  color: wheat;
+  border: 2px solid #266041;
+}
+
+/* Responsiveness pour les dés 3D */
+@media (max-width: 768px) {
+  #dice3DControls .col {
+    min-height: 80px;
+  }
+  #dice3DControls .fs-5 {
+    font-size: 1rem !important;
+  }
+  .dice-3d-container {
+    height: 300px !important;
+  }
+}
+@media (max-width: 576px) {
+  #dice3DControls {
+    row-gap: 10px;
+  }
+  #dice3DControls .col {
+    min-height: 60px;
+  }
+}
+/* Loading spinner pour les dés 3D */
+.dice-3d-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.dice-3d-loading .spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #266041;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
