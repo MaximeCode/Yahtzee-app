@@ -166,30 +166,111 @@ const Dice3D = ({
   };
 
   const createFloor = () => {
-    // Sol plus visible avec texture
-    const floorGeometry = new THREE.PlaneGeometry(90, 40);
-    const floorMaterial = new THREE.MeshLambertMaterial({
+    // Sol circulaire plus petit pour créer une arène
+    const arenaRadius = 12;
+    const arenaGeometry = new THREE.CircleGeometry(arenaRadius, 32);
+    const arenaMaterial = new THREE.MeshLambertMaterial({
       color: 0x2a4d3a,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.9,
     });
 
-    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-    floor.receiveShadow = true;
-    floor.position.y = -3; // Sol légèrement plus haut pour être visible dans l'angle
-    floor.quaternion.setFromAxisAngle(
+    const arena = new THREE.Mesh(arenaGeometry, arenaMaterial);
+    arena.receiveShadow = true;
+    arena.position.y = -3;
+    arena.quaternion.setFromAxisAngle(
       new THREE.Vector3(-1, 0, 0),
       Math.PI * 0.5
     );
-    sceneRef.current.add(floor);
+    sceneRef.current.add(arena);
 
+    // Corps physique du sol (plan)
     const floorBody = new CANNON.Body({
       type: CANNON.Body.STATIC,
       shape: new CANNON.Plane(),
     });
-    floorBody.position.copy(floor.position);
-    floorBody.quaternion.copy(floor.quaternion);
+    floorBody.position.copy(arena.position);
+    floorBody.quaternion.copy(arena.quaternion);
     physicsWorldRef.current.addBody(floorBody);
+
+    // CRÉATION DE LA BORDURE CIRCULAIRE
+    const wallHeight = 3;
+    const wallThickness = 0.5;
+    const wallSegments = 32;
+
+    // Géométrie de la bordure (tore/cylindre creux)
+    const wallGeometry = new THREE.RingGeometry(
+      arenaRadius - wallThickness,
+      arenaRadius,
+      wallSegments
+    );
+
+    // Extruder la bordure pour lui donner de la hauteur
+    const wallShape = new THREE.Shape();
+    const outerRadius = arenaRadius;
+    const innerRadius = arenaRadius - wallThickness;
+
+    // Créer un mur cylindrique
+    const wallCylinderGeometry = new THREE.CylinderGeometry(
+      outerRadius,
+      outerRadius,
+      wallHeight,
+      wallSegments,
+      1,
+      true
+    );
+    const innerCylinderGeometry = new THREE.CylinderGeometry(
+      innerRadius,
+      innerRadius,
+      wallHeight,
+      wallSegments,
+      1,
+      true
+    );
+
+    const wallMaterial = new THREE.MeshLambertMaterial({
+      color: 0x1a3529, // Vert plus foncé que le sol
+      transparent: true,
+      opacity: 0.8,
+      side: THREE.DoubleSide,
+    });
+
+    // Mur extérieur
+    const outerWall = new THREE.Mesh(wallCylinderGeometry, wallMaterial);
+    outerWall.position.y = -3 + wallHeight / 2;
+    outerWall.receiveShadow = true;
+    outerWall.castShadow = true;
+    sceneRef.current.add(outerWall);
+
+    // Corps physique pour la bordure (cylindre creux)
+    for (let i = 0; i < wallSegments; i++) {
+      const angle = (i / wallSegments) * Math.PI * 2;
+      const x = Math.cos(angle) * arenaRadius;
+      const z = Math.sin(angle) * arenaRadius;
+
+      const wallBody = new CANNON.Body({
+        type: CANNON.Body.STATIC,
+        shape: new CANNON.Box(
+          new CANNON.Vec3(wallThickness / 2, wallHeight / 2, wallThickness / 2)
+        ),
+      });
+
+      wallBody.position.set(x, -3 + wallHeight / 2, z);
+      physicsWorldRef.current.addBody(wallBody);
+    }
+
+    // Ajouter un top rim pour l'esthétique
+    const rimGeometry = new THREE.TorusGeometry(arenaRadius, 0.1, 8, 32);
+    const rimMaterial = new THREE.MeshStandardMaterial({
+      color: 0x0f1f15, // Encore plus foncé pour le rebord
+      metalness: 0.3,
+      roughness: 0.7,
+    });
+
+    const rim = new THREE.Mesh(rimGeometry, rimMaterial);
+    rim.position.y = -3 + wallHeight;
+    rim.castShadow = true;
+    sceneRef.current.add(rim);
   };
 
   const createDiceMesh = () => {
@@ -446,15 +527,18 @@ const Dice3D = ({
       d.body.velocity.setZero();
       d.body.angularVelocity.setZero();
 
-      // Position de départ ajustée pour les dés plus grands
+      // Position de départ dans l'arène (rayon max 8 pour rester dans les 12 de l'arène)
+      const maxRadius = 8;
+      const angle = Math.random() * Math.PI * 2;
+      const radius = Math.random() * maxRadius;
+
       d.body.position = new CANNON.Vec3(
-        (Math.random() - 0.5) * 7, // Légèrement réduit pour éviter la dispersion excessive
-        8 + Math.random() * 4,
-        (Math.random() - 0.5) * 6
+        Math.cos(angle) * radius, // Position X dans le cercle
+        8 + Math.random() * 4, // Hauteur de lancement
+        Math.sin(angle) * radius // Position Z dans le cercle
       );
       d.mesh.position.copy(d.body.position);
 
-      // ...reste du code inchangé...
       d.mesh.rotation.set(
         Math.random() * 4 * Math.PI,
         Math.random() * 4 * Math.PI,
